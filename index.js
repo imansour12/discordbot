@@ -104,9 +104,11 @@ client.on("interactionCreate", async (interaction) => {
       await interaction.reply("No reports found.");
     } else {
       const report = reports[0];
-      await interaction.reply(
-        `Report found! Reason: ${report.reason} | User: ${report.user}`
-      );
+      let ress = "Report found! ";
+      if (report.reason) {
+        ress += ` Reason: ${report.reason}.`;
+      }
+      await interaction.reply((ress += `Reported by: ${report.user}`));
     }
   }
 });
